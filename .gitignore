@@ -1,3 +1,12 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 *.iml
 .idea/
+
+# NodeJS
+node_modules
+
+# Do not commit Certificates
+ssl
+
+# Do not commit config
+config.json

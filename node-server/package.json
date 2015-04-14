@@ -1,0 +1,10 @@
+{
+  "name": "standup-companion-server",
+  "description": "server for maker faire standup companion",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "4.x",
+    "request": "2.x"
+  }
+}
