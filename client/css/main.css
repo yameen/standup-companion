@@ -1,10 +1,20 @@
+.top-row {
+    height: 150px;
+}
+
+.middle-row {
+    height: 450px;
+}
+
+.bottom-row {
+    height: 150px;
+}
+
 .col-xs-3  {
-    height: 250px;
     outline: 2px solid #000;
 }
 
 .col-xs-6  {
-    height: 250px;
     outline: 2px solid #000;
 }
 

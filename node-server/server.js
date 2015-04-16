@@ -26,7 +26,7 @@ function urlWithSSLOptions(url) {
 }
 
 app.get('/JiraTest', function (req, res) {
-    request.get(urlWithSSLOptions(config.jiraurl + '/rest/api/2/issue/741957'), function (error, response, body) {
+    request.get(urlWithSSLOptions(config.jiradomain + config.testissue), function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res.send(JSON.parse(body));
         }
