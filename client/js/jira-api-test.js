@@ -8,5 +8,5 @@ function boop() {
 
     document.getElementById("summary").innerHTML = response.fields.summary;
     document.getElementById("reporter").innerHTML = response.fields.reporter.name;
-    document.getElementById("photo").src = response.fields.reporter.avatarUrls['48x48'];
+    document.getElementById("avatars").src = response.fields.reporter.avatarUrls['48x48'];
 }

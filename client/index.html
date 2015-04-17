@@ -9,23 +9,12 @@
 </head>
 <body>
 
-
-    <!--<button class="btn btn-default" type="button" onclick="boop()">Query JIRA</button>-->
-
-    <!--<div>-->
-    <!--<h1><div id="summary"></div>-->
-    <!--<small><div id="reporter"></div></small>-->
-    <!--</h1>-->
-    <!--<img src="" id="photo">-->
-    <!--</div>-->
-
-
     <div class="container-fluid standupCompanion">
         <div class="row row--top">
             <div class="col-xs-9 standupCompanion__header outerPanel">
                 <div class="row header--top">
                     <div class="col-xs-7 header__epic">
-                        Epic
+                        <h2 id="epic">Epic</h2>
                     </div>
                     <div class="col-xs-5 header__timeInfo">
                         Time
@@ -33,16 +22,15 @@
                 </div>
                 <div class="row header--bottom">
                     <div class="col-xs-2 header__inProgress">
-                        In Progress
+                        <h2><small>In Progress</small></h2>
                     </div>
                     <div class="col-xs-10 header__avatars">
-                        Avatars
+                        <button class="btn btn-default" type="button" onclick="boop()">Test Query</button>
+                        <img src="" id="avatars">
                     </div>
                 </div>
             </div>
-            <div class="col-xs-3 standupCompanion__timer outerPanel">
-                
-            </div>
+            <div class="col-xs-3 standupCompanion__timer outerPanel"></div>
         </div>
         <div class="row row--bottom">
             <div class="col-xs-9 standupCompanion__body">
@@ -51,7 +39,9 @@
                         <span class="glyphicon glyphicon-chevron-left buttonIcon" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-8 standupCompanion__currentTicket">
-                        Ticket
+                        <h1><div id="summary"></div>
+                            <small><div id="reporter"></div></small>
+                        </h1>
                     </div>
                     <div class="col-xs-2 ticketNav ticketNav--right">
                         <span class="glyphicon glyphicon-chevron-right buttonIcon" aria-hidden="true"></span>
@@ -78,45 +68,43 @@
             </div>
         </div>
     </div>
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/TimeCircles.js"></script>
     <script src="js/jira-api-test.js"></script>
+
     <script type="text/javascript">
-
-    $( document ).ready(function() {
-        var idle_timer = $('.standupCompanion__timer',window.parent.document);
-        idle_timer.data('timer',65);
-        idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
-        .addListener(
-            function(unit,value,total) { 
-                switch(unit)
-                {
-                    case "Minutes":
-                    if (value<=0)
-                    {
-                        idle_timer.TimeCircles({time: { Days: {show: false}, Hours: {show:false}, Minutes: {show:false}}, Seconds: {show:true}}).rebuild();
+        $( document ).ready(function() {
+            var idle_timer = $('.standupCompanion__timer',window.parent.document);
+            idle_timer.data('timer',65);
+            idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
+                    .addListener(
+                    function(unit,value,total) {
+                        switch(unit)
+                        {
+                            case "Minutes":
+                                if (value<=0)
+                                {
+                                    idle_timer.TimeCircles({time: { Days: {show: false}, Hours: {show:false}, Minutes: {show:false}}, Seconds: {show:true}}).rebuild();
+                                }
+                                break;
+                            case "Seconds":
+                                if(total==60)
+                                    idel_timer.rebuild();
+                                if (total == 10) {
+                                    idle_timer.data('timer',10);
+                                    idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
+                                }
+                                if (total<=0)
+                                {
+                                    idle_timer.TimeCircles().destroy();
+                                }
+                                break;
+                        }
                     }
-                    break;
-                    case "Seconds":
-                    if(total==60)
-                        idel_timer.rebuild();
-                    if (total == 10) { 
-                        idle_timer.data('timer',10);
-                        idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
-                    } 
-                    if (total<=0)
-                    {
-                        idle_timer.TimeCircles().destroy();
-                    }
-                    break;
-                }
-
-            } 
             );
-    });
-
-
-</script>
+        });
+    </script>
 
 </body>
 </html>
