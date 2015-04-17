@@ -33,7 +33,7 @@
 
 .standupCompanion__info,
 .standupCompanion__header,
-.standupCompanion__timer,
+
 .header__epic,
 .header__timeInfo,
 .header__inProgress,
@@ -44,6 +44,10 @@
 .standupControls,
 .standupCompanion__info {
     height: 100%;
+}
+
+.standupCompanion__timer{
+    height:100%;
 }
 
 .header--top,

@@ -41,8 +41,7 @@
                 </div>
             </div>
             <div class="col-xs-3 standupCompanion__timer outerPanel">
-                Set Time / Countdown
-                <div id="countdownclockface" data-timer="60"></div>
+                
             </div>
         </div>
         <div class="row row--bottom">
@@ -85,7 +84,7 @@
     <script type="text/javascript">
 
     $( document ).ready(function() {
-        var idle_timer = $('#countdownclockface',window.parent.document);
+        var idle_timer = $('.standupCompanion__timer',window.parent.document);
         idle_timer.data('timer',65);
         idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
         .addListener(
@@ -99,13 +98,15 @@
                     }
                     break;
                     case "Seconds":
+                    if(total==60)
+                        idel_timer.rebuild();
                     if (total == 10) { 
                         idle_timer.data('timer',10);
                         idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
                     } 
                     if (total<=0)
                     {
-                        $('#countdownclockface').TimeCircles().destroy();
+                        idle_timer.TimeCircles().destroy();
                     }
                     break;
                 }
