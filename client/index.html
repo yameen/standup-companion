@@ -7,28 +7,76 @@
     <title></title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-3 top-row"><button class="btn btn-default" type="button" onclick="boop()">Query JIRA</button></div>
-            <div class="col-xs-3 top-row">.col-xs-3</div>
-            <div class="col-xs-3 top-row">.col-xs-3</div>
-            <div class="col-xs-3 top-row">.col-xs-3</div>
-        </div><div class="row">
-            <div class="col-xs-3 middle-row">.col-xs-3</div>
-            <div class="col-xs-6 middle-row">
-                <h1><div id="summary"></div>
-                    <small><div id="reporter"></div></small>
-                </h1>
-                <img src="" id="photo">
+
+
+    <!--<button class="btn btn-default" type="button" onclick="boop()">Query JIRA</button>-->
+
+    <!--<div>-->
+        <!--<h1><div id="summary"></div>-->
+            <!--<small><div id="reporter"></div></small>-->
+        <!--</h1>-->
+        <!--<img src="" id="photo">-->
+    <!--</div>-->
+
+
+    <div class="container-fluid standupCompanion">
+        <div class="row row--top">
+            <div class="col-xs-9 standupCompanion__header">
+                <div class="row header--top">
+                    <div class="col-xs-7 header__epic">
+                        Epic
+                    </div>
+                    <div class="col-xs-5 header__timeInfo">
+                        Time
+                    </div>
+                </div>
+                <div class="row header--bottom">
+                    <div class="col-xs-2 header__inProgress">
+                        In Progress
+                    </div>
+                    <div class="col-xs-10 header__avatars">
+                        Avatars
+                    </div>
+                </div>
             </div>
-            <div class="col-xs-3 middle-row">.col-xs-3</div>
-        </div><div class="row">
-            <div class="col-xs-3 bottom-row">.col-xs-3</div>
-            <div class="col-xs-3 bottom-row">.col-xs-3</div>
-            <div class="col-xs-3 bottom-row">.col-xs-3</div>
-            <div class="col-xs-3 bottom-row">.col-xs-3</div>
+            <div class="col-xs-3 standupCompanion__timer">
+                Set Time / Countdown
+            </div>
+        </div>
+        <div class="row row--bottom">
+            <div class="col-xs-9 standupCompanion__body">
+                <div class="row body--top">
+                    <div class="col-xs-2 ticketNav ticketNav--left">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-xs-8 standupCompanion__currentTicket">
+                        Ticket
+                    </div>
+                    <div class="col-xs-2 ticketNav ticketNav--right">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    </div>
+                </div>
+                <div class="row body--bottom">
+                    <div class="col-xs-3 standupControls standupControls--restart">
+                        <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-xs-3 standupControls standupControls--playPause">
+                        <span class="glyphicon glyphicon-play" aria-hidden="true"></span><span class="glyphicon glyphicon-pause" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-xs-3 standupControls standupControls--stop">
+                        <span class="glyphicon glyphicon-stop" aria-hidden="true"></span>
+                    </div>
+                    <div class="col-xs-3 standupControls standupControls--mute">
+                        <span class="glyphicon glyphicon-volume-off" aria-hidden="true"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-3 standupCompanion__info">
+                Ticket number
+            </div>
         </div>
     </div>
+
     <script src="js/jira-api-test.js"></script>
 </body>
 </html>

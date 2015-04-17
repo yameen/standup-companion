@@ -1,24 +1,47 @@
-.top-row {
-    height: 150px;
-}
-
-.middle-row {
-    height: 450px;
-}
-
-.bottom-row {
-    height: 150px;
-}
-
-.col-xs-3  {
-    outline: 2px solid #000;
-}
-
-.col-xs-6  {
+div[class^='col-xs-']{
     outline: 2px solid #000;
 }
 
 .btn {
     height: 100%;
-    width: 100%;
+}
+
+.standupCompanion {
+    height: 768px;
+}
+
+.row--top {
+    height: 20%;
+}
+
+.row--bottom {
+    height: 80%;
+}
+
+.body--top {
+    height: 90%;
+}
+
+.body--bottom {
+    height: 10%;
+}
+
+.standupCompanion__info,
+.standupCompanion__header,
+.standupCompanion__timer,
+.header__epic,
+.header__timeInfo,
+.header__inProgress,
+.header__avatars,
+.standupCompanion__body,
+.ticketNav,
+.standupCompanion__currentTicket,
+.standupControls,
+.standupCompanion__info {
+    height: 100%;
+}
+
+.header--top,
+.header--bottom {
+    height: 50%;
 }
