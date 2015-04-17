@@ -1,6 +1,11 @@
-div[class^='col-xs-']{
-    outline: 2px solid #000;
-}
+/*
+    Colour Palette
+    Red:            #B9121B
+    Dark Red:       #4C1B1B
+    Light Brown:    #F6E497
+    Cream:          #FCFAE1
+    Dark Brown:     #BD8D46
+*/
 
 .btn {
     height: 100%;
@@ -19,11 +24,11 @@ div[class^='col-xs-']{
 }
 
 .body--top {
-    height: 90%;
+    height: 80%;
 }
 
 .body--bottom {
-    height: 10%;
+    height: 20%;
 }
 
 .standupCompanion__info,
@@ -44,4 +49,46 @@ div[class^='col-xs-']{
 .header--top,
 .header--bottom {
     height: 50%;
+}
+
+.ticketNav, .standupControls {
+    text-align: center;
+    font-size: xx-large;
+    background-color: rgba(189,141,70,0.8);
+    border: 5px solid #B9121B;
+    z-index: 666;
+}
+
+.ticketNav:active, .standupControls:active {
+    background-color: rgba(189,141,70,1);
+}
+
+.ticketNav .buttonIcon {
+     margin-top: 255%;
+}
+
+.standupControls .buttonIcon {
+    margin-top: 25%;
+}
+
+.outerPanel {
+    background-color: #F6E497;
+}
+
+.standupCompanion__body {
+    background-color: #FCFAE1;
+}
+
+.buttonIcon {
+    color: #4C1B1B;
+}
+
+.ticketNav {
+    border-bottom: none;
+}
+
+.standupControls--restart,
+.standupControls--playPause,
+.standupControls--stop {
+    border-right: none;
 }
