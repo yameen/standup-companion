@@ -45,3 +45,16 @@ div[class^='col-xs-']{
 .header--bottom {
     height: 50%;
 }
+
+.ticketNav, .standupControls {
+    text-align: center;
+    font-size: xx-large;
+}
+
+.ticketNav .buttonIcon {
+     margin-top: 250%;
+}
+
+.standupControls .buttonIcon {
+    margin-top: 9%;
+}
