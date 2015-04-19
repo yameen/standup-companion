@@ -24,9 +24,8 @@
                     <div class="col-xs-2 header__inProgress">
                         <h2><small>In Progress</small></h2>
                     </div>
-                    <div class="col-xs-10 header__avatars">
-                        <button class="btn btn-default" type="button" onclick="boop()">Test Query</button>
-                        <img src="" id="avatars">
+                    <div class="col-xs-10 header__standupInfo">
+                        Ticket number
                     </div>
                 </div>
             </div>
@@ -39,9 +38,7 @@
                         <span class="glyphicon glyphicon-chevron-left buttonIcon" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-8 standupCompanion__currentTicket">
-                        <h1><div id="summary"></div>
-                            <small><div id="reporter"></div></small>
-                        </h1>
+                        <h1><div id="summary"></div></h1>
                     </div>
                     <div class="col-xs-2 ticketNav ticketNav--right">
                         <span class="glyphicon glyphicon-chevron-right buttonIcon" aria-hidden="true"></span>
@@ -63,8 +60,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-xs-3 standupCompanion__info outerPanel">
-                Ticket number
+            <div class="col-xs-3 standupCompanion__avatars outerPanel">
+                <button class="btn btn-default" type="button" onclick="boop()">Test Query</button>
+                <br><br>
+                <img src="" id="avatars">&nbsp;<span id="reporter"></span>
             </div>
         </div>
     </div>

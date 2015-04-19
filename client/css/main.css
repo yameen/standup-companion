@@ -31,18 +31,16 @@ h2 {
     height: 20%;
 }
 
-.standupCompanion__info,
 .standupCompanion__header,
-
 .header__epic,
 .header__timeInfo,
 .header__inProgress,
-.header__avatars,
+.standupCompanion__avatars,
 .standupCompanion__body,
 .ticketNav,
 .standupCompanion__currentTicket,
 .standupControls,
-.standupCompanion__info {
+.header__standupInfo {
     height: 100%;
 }
 
@@ -61,6 +59,10 @@ h2 {
     background-color: rgba(189,141,70,0.8);
     border: 5px solid #B9121B;
     z-index: 666;
+}
+
+.standupCompanion__currentTicket {
+    border-top: 5px solid rgba(246,228,151,0.5);
 }
 
 .ticketNav:active, .standupControls:active {
