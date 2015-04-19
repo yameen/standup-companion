@@ -98,3 +98,7 @@ h2 {
 .standupControls--stop {
     border-right: none;
 }
+
+.currentTicket__info {
+    height: 80%;
+}
