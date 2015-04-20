@@ -31,6 +31,16 @@ function loadTickets(project, status, epic) {
     updateTicketView(tickets.issues[ticketCounter]);
 }
 
+function loadFakeData() {
+    var req = new XMLHttpRequest();
+    req.open("GET", "FakeData/", false);
+    req.send(null);
+    tickets = JSON.parse(req.responseText);
+    console.log(tickets);
+    ticketCounter = 0;
+    updateTicketView(tickets.issues[ticketCounter]);
+}
+
 function nextTicket() {
     if (ticketCounter < tickets.issues.length-1) {
         updateTicketView(tickets.issues[++ticketCounter]);

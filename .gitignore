@@ -11,3 +11,4 @@ ssl
 
 # Do not commit config
 config.json
+fakedata.json

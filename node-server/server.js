@@ -53,6 +53,13 @@ app.get('/LoadTickets', function (req, res) {
     });
 });
 
+app.get('/FakeData', function (req, res) {
+    fs.readFile('fakedata.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        res.send(JSON.parse(data));
+    });
+});
+
 var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;
