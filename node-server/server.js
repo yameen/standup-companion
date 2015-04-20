@@ -33,6 +33,26 @@ app.get('/JiraTest', function (req, res) {
     });
 });
 
+app.get('/LoadTickets', function (req, res) {
+    var project = req.query.project;
+    var status = req.query.status;
+    var epic = req.query.epic;
+
+    var queryUrl = config.jiradomain + "/rest/api/2/search?jql=";
+    queryUrl += "project=" + config.projects[project];
+    queryUrl += " AND status=" + config.statuses[status];
+    queryUrl += " AND \"Epic Link\"=" + config.epics[epic];
+
+    console.log("URL: " + req.url);
+    console.log("JIRA URL: " + encodeURI(queryUrl));
+
+    request.get(urlWithSSLOptions(encodeURI(queryUrl)), function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.send(JSON.parse(body));
+        }
+    });
+});
+
 var server = app.listen(3000, function () {
     var host = server.address().address;
     var port = server.address().port;

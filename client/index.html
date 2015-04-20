@@ -35,7 +35,7 @@
         <div class="row row--bottom">
             <div class="col-xs-9 standupCompanion__body">
                 <div class="row body--top">
-                    <div class="col-xs-2 ticketNav ticketNav--left">
+                    <div class="col-xs-2 ticketNav ticketNav--left" onclick="previousTicket()">
                         <span class="glyphicon glyphicon-chevron-left buttonIcon" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-8 standupCompanion__currentTicket">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-2 ticketNav ticketNav--right">
+                    <div class="col-xs-2 ticketNav ticketNav--right" onclick="nextTicket()">
                         <span class="glyphicon glyphicon-chevron-right buttonIcon" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -70,6 +70,7 @@
             </div>
             <div class="col-xs-3 standupCompanion__avatars outerPanel">
                 <button class="btn btn-default" type="button" onclick="boop()">Test Query</button>
+                <button class="btn btn-primary" type="button" onclick="loadTickets('iplayertv', 'inprogress', 'cph')">Test Query</button>
                 <br><br>
                 <img src="" id="avatars">&nbsp;<span id="reporter"></span>
             </div>
