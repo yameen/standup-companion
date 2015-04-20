@@ -5,6 +5,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/main.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/TimeCircles.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery.bootstrap-touchspin.css">
     <title></title>
 </head>
 <body>
@@ -77,13 +78,62 @@
 
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
     <script type="text/javascript" src="js/TimeCircles.js"></script>
+    <script type="text/javascript" src="js/jquery.bootstrap-touchspin.js"></script>
     <script src="js/jira-api-test.js"></script>
 
     <script type="text/javascript">
-        $( document ).ready(function() {
-            var idle_timer = $('.standupCompanion__timer',window.parent.document);
-            idle_timer.data('timer',65);
-            idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
+    $( document ).ready(function() 
+    {
+        playingTimer = false;
+        createTimePerTicketSelector();
+        $(".standupControls--playPause").click(function () {
+            if(!playingTimer)
+            {
+                playWithCurrentTimePerTicket();
+            }
+            else
+            {
+                removeTimerAndReDisplaySelector();
+            }
+            playingTimer = !playingTimer;
+            
+        });
+
+    });
+
+    function createTimePerTicketSelector() {
+        $('.standupCompanion__timer').append('<input id="timerSelect" type="text" value="5" name="ticketTime">');
+        $("input[name='ticketTime']").TouchSpin({
+                min: 1,
+                max: 6,
+                step: 1,
+                decimals: 0,
+                booster: false,
+                postfix: 'Minutes'
+            });
+    }
+    function destroyAndClearInnerHtmlOfTimerCircles() {
+        var countDown_timer = $('.standupCompanion__timer',window.parent.document);
+            countDown_timer.TimeCircles().destroy();
+            $('.standupCompanion__timer').empty();
+    }
+    function removeTimerAndReDisplaySelector() {
+        destroyAndClearInnerHtmlOfTimerCircles();
+        createTimePerTicketSelector();
+    }
+    function playWithCurrentTimePerTicket() {
+        var timePerTicket = getTimeSetPerTicketInSeconds();
+        destroyAndClearInnerHtmlOfTimerCircles();
+        startTicketCountDownTimer(timePerTicket);
+    }
+    function getTimeSetPerTicketInSeconds(){
+        var inputValue = parseInt($('#timerSelect').val() || 5, 10);
+        return (inputValue * 60);
+    }
+        function startTicketCountDownTimer(timeInSeconds) {
+            var countDown_timer = $('.standupCompanion__timer',window.parent.document);
+            countDown_timer.data('timer',timeInSeconds || 300);
+            countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
                     .addListener(
                     function(unit,value,total) {
                         switch(unit)
@@ -91,25 +141,25 @@
                             case "Minutes":
                                 if (value<=0)
                                 {
-                                    idle_timer.TimeCircles({time: { Days: {show: false}, Hours: {show:false}, Minutes: {show:false}}, Seconds: {show:true}}).rebuild();
+                                    countDown_timer.TimeCircles({time: { Days: {show: false}, Hours: {show:false}, Minutes: {show:false}}, Seconds: {show:true}}).rebuild();
                                 }
                                 break;
                             case "Seconds":
                                 if(total==60)
                                     idel_timer.rebuild();
-                                if (total == 10) {
-                                    idle_timer.data('timer',10);
-                                    idle_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
+                                if (total == 30) {
+                                    countDown_timer.data('timer',30);
+                                    countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
                                 }
                                 if (total<=0)
                                 {
-                                    idle_timer.TimeCircles().destroy();
+                                    countDown_timer.TimeCircles().destroy();
                                 }
                                 break;
                         }
                     }
             );
-        });
+        };
     </script>
 
 </body>
