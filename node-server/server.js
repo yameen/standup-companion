@@ -25,14 +25,6 @@ function urlWithSSLOptions(url) {
     return options;
 }
 
-app.get('/JiraTest', function (req, res) {
-    request.get(urlWithSSLOptions(config.jiradomain + config.testissue), function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            res.send(JSON.parse(body));
-        }
-    });
-});
-
 app.get('/LoadTickets', function (req, res) {
     var project = req.query.project;
     var status = req.query.status;

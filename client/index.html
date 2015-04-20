@@ -43,7 +43,7 @@
                             <h1><div id="summary"></div></h1>
                         </div>
                         <div class="progress currentTicket__progress">
-                            <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: 80%">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" id="standupProgress">
                                 <span class="sr-only"></span>
                             </div>
                         </div>
@@ -69,8 +69,7 @@
                 </div>
             </div>
             <div class="col-xs-3 standupCompanion__avatars outerPanel">
-                <button class="btn btn-default" type="button" onclick="boop()">Test Query</button>
-                <button class="btn btn-primary" type="button" onclick="loadTickets('iplayertv', 'inprogress', 'cph')">Test Query</button>
+                <button class="btn btn-primary" type="button" onclick="loadTickets('iplayertv', 'inprogress', 'cph')">Query Jira</button>
                 <button class="btn btn-danger" type="button" onclick="loadFakeData()">Load Fake Data</button>
                 <br><br>
                 <img src="" id="avatars">&nbsp;<span id="reporter"></span>
