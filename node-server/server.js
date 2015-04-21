@@ -50,8 +50,9 @@ app.get('/LoadTickets', function (req, res) {
     });
 });
 
-app.get('/FakeData', function (req, res) {
-    fs.readFile('fakedata.json', 'utf8', function (err, data) {
+//TODO for dev only
+app.get('/OfflineTickets', function (req, res) {
+    fs.readFile('offline/tickets.json', 'utf8', function (err, data) {
         if (err) throw err;
         res.send(JSON.parse(data));
     });
