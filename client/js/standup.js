@@ -16,21 +16,19 @@ function updateTicketView() {
 
 function loadTickets(project, status, epic) {
     var queryURL = "/LoadTickets?project=" + project + "&status=" + status + "&epic=" + epic;
-    var req = new XMLHttpRequest();
-    req.open("GET", queryURL, false);
-    req.send(null);
-    tickets = JSON.parse(req.responseText);
-    resetTicketCounter();
-    updateTicketView();
+    $.getJSON(queryURL, function(data){
+        tickets = data;
+        resetTicketCounter();
+        updateTicketView();
+    });
 }
 
 function loadFakeData() {
-    var req = new XMLHttpRequest();
-    req.open("GET", "FakeData/", false);
-    req.send(null);
-    tickets = JSON.parse(req.responseText);
-    resetTicketCounter();
-    updateTicketView();
+    $.getJSON("FakeData/", function(data){
+        tickets = data;
+        resetTicketCounter();
+        updateTicketView();
+    });
 }
 
 function nextTicket() {

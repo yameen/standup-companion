@@ -25,6 +25,10 @@ function urlWithSSLOptions(url) {
     return options;
 }
 
+app.get('/ListEpics', function (req, res) {
+    res.send(config.epics);
+});
+
 app.get('/LoadTickets', function (req, res) {
     var project = req.query.project;
     var status = req.query.status;
@@ -33,12 +37,13 @@ app.get('/LoadTickets', function (req, res) {
     var queryUrl = config.jiradomain + "/rest/api/2/search?jql=";
     queryUrl += "project=" + config.projects[project];
     queryUrl += " AND status=" + config.statuses[status];
-    queryUrl += " AND \"Epic Link\"=" + config.epics[epic];
+    queryUrl += " AND \"Epic Link\"=" + config.epics[epic].url;
+    queryUrl = encodeURI(queryUrl);
 
     console.log("URL: " + req.url);
-    console.log("JIRA URL: " + encodeURI(queryUrl));
+    console.log("JIRA URL: " + queryUrl);
 
-    request.get(urlWithSSLOptions(encodeURI(queryUrl)), function (error, response, body) {
+    request.get(urlWithSSLOptions(queryUrl), function (error, response, body) {
         if (!error && response.statusCode == 200) {
             res.send(JSON.parse(body));
         }
