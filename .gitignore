@@ -4,11 +4,13 @@
 *.DS_Store
 
 # NodeJS
-node_modules
+node_modules/
 
 # Do not commit Certificates
-ssl
+ssl/
 
 # Do not commit config
 config.json
-fakedata.json
+
+# Do not commit offline data for dev/test
+offline/

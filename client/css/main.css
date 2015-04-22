@@ -74,7 +74,6 @@ h2 {
     font-size: xx-large;
     background-color: rgba(189,141,70,0.8);
     border: 5px solid #B9121B;
-    z-index: 666;
 }
 
 .standupCompanion__currentTicket {
@@ -86,11 +85,11 @@ h2 {
 }
 
 .ticketNav .buttonIcon {
-     margin-top: 180%;
+     margin-top: 210%;
 }
 
 .standupControls .buttonIcon {
-    margin-top: 16%;
+    margin-top: 17%;
 }
 
 .outerPanel {

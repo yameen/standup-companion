@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    <button class="btn btn-primary" type="button" onclick="loadEpics()">List Epics</button>
+    <button class="btn btn-danger" type="button" onclick="loadOfflineEpics()">Load Offline Epics</button>
+    <table class="table" id="epicList">
+        <thead>
+            <tr>
+                <td><h1>Epics</h1></td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script src="js/epics.js"></script>
+</body>
+</html>

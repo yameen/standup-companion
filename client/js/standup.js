@@ -85,8 +85,9 @@ function isThereAPreviousTicket()
     }
 }
 
-function loadFakeData() {
-    $.getJSON("FakeData/", function(data){
+//TODO for dev only
+function loadOfflineTickets() {
+    $.getJSON("OfflineTickets/", function(data){
         tickets = data;
         resetcurrentTicketCounter();
         validateDataReturned(tickets);

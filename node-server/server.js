@@ -26,7 +26,12 @@ function urlWithSSLOptions(url) {
 }
 
 app.get('/ListEpics', function (req, res) {
-    res.send(config.epics);
+    var queryUrl = config.jiradomain + "/rest/greenhopper/1.0/xboard/plan/backlog/epics?rapidViewId=" + config.rapidViewId;
+    request.get(urlWithSSLOptions(queryUrl), function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            res.send(JSON.parse(body));
+        }
+    });
 });
 
 app.get('/LoadTickets', function (req, res) {
@@ -50,8 +55,17 @@ app.get('/LoadTickets', function (req, res) {
     });
 });
 
-app.get('/FakeData', function (req, res) {
-    fs.readFile('fakedata.json', 'utf8', function (err, data) {
+//TODO for dev only
+app.get('/OfflineTickets', function (req, res) {
+    fs.readFile('offline/tickets.json', 'utf8', function (err, data) {
+        if (err) throw err;
+        res.send(JSON.parse(data));
+    });
+});
+
+//TODO for dev only
+app.get('/OfflineEpics', function (req, res) {
+    fs.readFile('offline/epics.json', 'utf8', function (err, data) {
         if (err) throw err;
         res.send(JSON.parse(data));
     });
