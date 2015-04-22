@@ -26,6 +26,7 @@
                         <h2><small>In Progress</small></h2>
                     </div>
                     <div class="col-xs-10 header__standupInfo">
+                        <div class="header__statusIndicator"></div>
                         <span>Ticket number X out of Y</span>
                     </div>
                 </div>
@@ -126,12 +127,7 @@
             if(playingTimer)
                 playWithCurrentTimePerTicket();
         });
-        //create the info panel
-        $('.header__standupInfo')
-                .prepend($('<div>')
-                        .addClass('header__statusIndicator'))
     });
-
 
 </script>
 
