@@ -25,8 +25,8 @@
                     <div class="col-xs-2 header__inProgress">
                         <h2><small>In Progress</small></h2>
                     </div>
-                    <div class="col-xs-10 header__standupInfo">
-                        Ticket number X out of Y
+                    <div class="col-xs-8 header__standupInfo">
+                        <span>Ticket number X out of Y</span>
                     </div>
                 </div>
             </div>
@@ -35,7 +35,7 @@
         <div class="row row--bottom">
             <div class="col-xs-9 standupCompanion__body">
                 <div class="row body--top">
-                    <div class="col-xs-2 ticketNav ticketNav--left" onclick="previousTicket()">
+                    <div class="col-xs-2 ticketNav ticketNav--left">
                         <span class="glyphicon glyphicon-chevron-left buttonIcon" aria-hidden="true"></span>
                     </div>
                     <div class="col-xs-8 standupCompanion__currentTicket">
@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-2 ticketNav ticketNav--right" onclick="nextTicket()">
+                    <div class="col-xs-2 ticketNav ticketNav--right">
                         <span class="glyphicon glyphicon-chevron-right buttonIcon" aria-hidden="true"></span>
                     </div>
                 </div>
@@ -81,11 +81,12 @@
     <script type="text/javascript" src="js/TimeCircles.js"></script>
     <script type="text/javascript" src="js/jquery.bootstrap-touchspin.js"></script>
     <script src="js/standup.js"></script>
+    <script type="text/javascript" src="js/countdowntimer.js"></script>
 
     <script type="text/javascript">
     $( document ).ready(function() 
     {
-        playingTimer = false;
+        var playingTimer = false;
         createTimePerTicketSelector();
         $(".standupControls--playPause").click(function () {
             if(!playingTimer)
@@ -97,71 +98,36 @@
                 removeTimerAndReDisplaySelector();
             }
             playingTimer = !playingTimer;
-            
+            setStatusIndicatorToPlay(playingTimer);
         });
+        $(".standupControls--stop").click(function(){
+            resetcurrentTicketCounter();
+            updateTicketView();
+            removeTimerAndReDisplaySelector();
+            setStatusIndicatorToPlay(false);
+        });
+        $(".standupControls--restart").click(function(){
+            resetcurrentTicketCounter();
+            updateTicketView();
+            playWithCurrentTimePerTicket();
+        });
+
+        $(".ticketNav--left").click(function(){
+            previousTicket();
+            if(playingTimer)
+                playWithCurrentTimePerTicket();
+        });
+        $(".ticketNav--right").click(function(){
+            nextTicket();
+            if(playingTimer)
+                playWithCurrentTimePerTicket();
+        });
+        //create the info panel, probably neater way to do this
+        $('.header__standupInfo').append('<div class="col-xs-2 header__statusIndicator"></div>');
 
     });
 
-    function createTimePerTicketSelector() {
-        $('.standupCompanion__timer').append('<input id="timerSelect" type="text" value="5" name="ticketTime">');
-        $("input[name='ticketTime']").TouchSpin({
-            min: 2,
-            max: 6,
-            step: 1,
-            decimals: 0,
-            booster: false,
-            postfix: 'Minutes'
-        });
-    }
-    function destroyAndClearInnerHtmlOfTimerCircles() {
-        var countDown_timer = $('.standupCompanion__timer',window.parent.document);
-        countDown_timer.TimeCircles().destroy();
-        $('.standupCompanion__timer').empty();
-    }
-    function removeTimerAndReDisplaySelector() {
-        destroyAndClearInnerHtmlOfTimerCircles();
-        createTimePerTicketSelector();
-    }
-    function playWithCurrentTimePerTicket() {
-        var timePerTicket = getTimeSetPerTicketInSeconds();
-        destroyAndClearInnerHtmlOfTimerCircles();
-        startTicketCountDownTimer(timePerTicket);
-    }
-    function getTimeSetPerTicketInSeconds(){
-        var inputValue = parseInt($('#timerSelect').val() || 5, 10);
-        return (inputValue * 60);
-    }
-    function startTicketCountDownTimer(timeInSeconds) {
-        var countDown_timer = $('.standupCompanion__timer',window.parent.document);
-        countDown_timer.data('timer',timeInSeconds || 300);
-        countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
-        .addListener(
-            function(unit,value,total) {
-                switch(unit)
-                {
-                    case "Minutes":
-                    if (value<=0)
-                    {
-                        countDown_timer.TimeCircles({time: { Days: {show: false}, Hours: {show:false}, Minutes: {show:false}}, Seconds: {show:true}}).rebuild();
-                    }
-                    break;
-                    case "Seconds":
-                    if(total==60)
-                        idel_timer.rebuild();
-                    if (total == 30) {
-                        countDown_timer.data('timer',30);
-                        countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
-                    }
-                    if (total<=0)
-                    {
-                        countDown_timer.TimeCircles().destroy();
-                        //ticket time is over, send an alert and start next ticket timer
-                    }
-                    break;
-                }
-            }
-            );
-};
+
 </script>
 
 </body>

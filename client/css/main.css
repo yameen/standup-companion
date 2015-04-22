@@ -39,9 +39,25 @@ h2 {
 .standupCompanion__body,
 .ticketNav,
 .standupCompanion__currentTicket,
-.standupControls,
-.header__standupInfo {
+.standupControls{
     height: 100%;
+}
+
+
+.header__standupInfo {
+    font-size: 18pt;
+}
+
+.header__statusIndicator{
+    background-image: url("../img/standup_stopped.jpg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 63px;
+    width: 102px;   
+}
+.header__statusIndicator.playingTimer {
+    background-image: url("../img/standup_running.gif");
+
 }
 
 .standupCompanion__timer{
