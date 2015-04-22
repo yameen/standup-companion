@@ -43,7 +43,7 @@
                             <h1><div id="summary"></div></h1>
                         </div>
                         <div class="progress currentTicket__progress">
-                            <div class="progress-bar progress-bar-striped active" role="progressbar" id="standupProgress">
+                            <div class="progress-bar" role="progressbar" id="standupProgress">
                                 <span class="sr-only"></span>
                             </div>
                         </div>
@@ -92,10 +92,12 @@
             if(!playingTimer)
             {
                 playWithCurrentTimePerTicket();
+                $('#standupProgress').addClass('active progress-bar-striped');
             }
             else
             {
                 removeTimerAndReDisplaySelector();
+                $('#standupProgress').removeClass('active progress-bar-striped');
             }
             playingTimer = !playingTimer;
             setStatusIndicatorToPlay(playingTimer);
@@ -106,6 +108,7 @@
             removeTimerAndReDisplaySelector();
             setStatusIndicatorToPlay(false);
             playingTimer = false;
+            $('#standupProgress').removeClass('active progress-bar-striped');
         });
         $(".standupControls--restart").click(function(){
             resetCurrentTicketCounter();
