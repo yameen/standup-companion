@@ -3,7 +3,7 @@ var currentTicketCounter;
 var haveValidNonEmptyData = false;
 var totalNumberOfTickets = 0;
 
-function resetcurrentTicketCounter() {
+function resetCurrentTicketCounter() {
     currentTicketCounter = 1;
 }
 
@@ -17,8 +17,6 @@ function updateTicketView() {
     var standupProgress = (((currentTicketCounter)/tickets.issues.length)*100) + '%';
     $('#standupProgress').css('width', standupProgress);
     $('.header__standupInfo span').text('Ticket number '+ currentTicketCounter +' of '+ totalNumberOfTickets);
-
-    
 }
 
 function setStatusIndicatorToPlay(playing){
@@ -36,11 +34,12 @@ function loadTickets(project, status, epic) {
     $.getJSON(queryURL, function(data){
         tickets = data;
         validateDataReturned(tickets);
-        resetcurrentTicketCounter();
+        resetCurrentTicketCounter();
         updateTicketView();
     });
 }
 
+//TODO is totalNumberOfTickets updated?
 function validateDataReturned(dataIn) {
     if(dataIn && (totalNumberOfTickets > 0))
     {
@@ -70,6 +69,7 @@ function isThereANextTicket()
     }
 }
 
+//TODO this isn't used?
 function isThereAPreviousTicket()
 {
     if(ticketsHaveBeenLoaded) {
@@ -89,7 +89,7 @@ function isThereAPreviousTicket()
 function loadOfflineTickets() {
     $.getJSON("OfflineTickets/", function(data){
         tickets = data;
-        resetcurrentTicketCounter();
+        resetCurrentTicketCounter();
         validateDataReturned(tickets);
         updateTicketView();
     });

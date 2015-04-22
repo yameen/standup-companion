@@ -4,7 +4,8 @@ function listEpics(json) {
         if(!value.hidden){
             $("#epicList").children('tbody')
                 .append($('<tr>')
-                    .append($('<td class="btn btn-default btn-block">')
+                    .append($('<td>')
+                        .addClass('btn btn-default btn-block')
                         .text(value.epicLabel)
                         .data('epicJson', value)
                         .click(function(){console.log($(this).data('epicJson'))})

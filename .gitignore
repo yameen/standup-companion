@@ -13,4 +13,4 @@ ssl/
 config.json
 
 # Do not commit offline data for dev/test
-offline/
+offlinedata/

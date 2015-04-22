@@ -25,7 +25,7 @@
                     <div class="col-xs-2 header__inProgress">
                         <h2><small>In Progress</small></h2>
                     </div>
-                    <div class="col-xs-8 header__standupInfo">
+                    <div class="col-xs-10 header__standupInfo">
                         <span>Ticket number X out of Y</span>
                     </div>
                 </div>
@@ -101,13 +101,13 @@
             setStatusIndicatorToPlay(playingTimer);
         });
         $(".standupControls--stop").click(function(){
-            resetcurrentTicketCounter();
+            resetCurrentTicketCounter();
             updateTicketView();
             removeTimerAndReDisplaySelector();
             setStatusIndicatorToPlay(false);
         });
         $(".standupControls--restart").click(function(){
-            resetcurrentTicketCounter();
+            resetCurrentTicketCounter();
             updateTicketView();
             playWithCurrentTimePerTicket();
         });
@@ -122,9 +122,10 @@
             if(playingTimer)
                 playWithCurrentTimePerTicket();
         });
-        //create the info panel, probably neater way to do this
-        $('.header__standupInfo').append('<div class="col-xs-2 header__statusIndicator"></div>');
-
+        //create the info panel
+        $('.header__standupInfo')
+                .prepend($('<div>')
+                        .addClass('header__statusIndicator'))
     });
 
 
