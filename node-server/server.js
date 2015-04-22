@@ -57,7 +57,7 @@ app.get('/LoadTickets', function (req, res) {
 
 //TODO for dev only
 app.get('/OfflineTickets', function (req, res) {
-    fs.readFile('offline/tickets.json', 'utf8', function (err, data) {
+    fs.readFile('offlinedata/tickets.json', 'utf8', function (err, data) {
         if (err) throw err;
         res.send(JSON.parse(data));
     });
@@ -65,7 +65,7 @@ app.get('/OfflineTickets', function (req, res) {
 
 //TODO for dev only
 app.get('/OfflineEpics', function (req, res) {
-    fs.readFile('offline/epics.json', 'utf8', function (err, data) {
+    fs.readFile('offlinedata/epics.json', 'utf8', function (err, data) {
         if (err) throw err;
         res.send(JSON.parse(data));
     });
