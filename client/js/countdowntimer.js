@@ -20,6 +20,7 @@
         createTimePerTicketSelector();
     };
     function playWithCurrentTimePerTicket() {
+        getTimeSetPerTicketInSeconds();
         destroyAndClearInnerHtmlOfTimerCircles();
         startTicketCountDownTimer(timePerTicket);
     };
@@ -77,6 +78,6 @@
                     break;
                 }
             }
-            );
-    playingTimer = true;
-};
+        );
+        playingTimer = true;
+    };

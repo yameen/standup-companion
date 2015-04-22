@@ -1,6 +1,5 @@
 var tickets;
 var currentTicketCounter;
-var haveValidNonEmptyData = false;
 var totalNumberOfTickets = 0;
 
 function resetCurrentTicketCounter() {
@@ -33,47 +32,15 @@ function loadTickets(project, status, epic) {
     var queryURL = "/LoadTickets?project=" + project + "&status=" + status + "&epic=" + epic;
     $.getJSON(queryURL, function(data){
         tickets = data;
-        validateDataReturned(tickets);
         resetCurrentTicketCounter();
         updateTicketView();
     });
 }
 
-//TODO is totalNumberOfTickets updated?
-function validateDataReturned(dataIn) {
-    if(dataIn && (totalNumberOfTickets > 0))
-    {
-        haveValidNonEmptyData = true;
-    }
-    else {
-        haveValidNonEmptyData = false;
-    } 
-}
-
-function ticketsHaveBeenLoaded(){
-    return haveValidNonEmptyData;
-}
-
 function isThereANextTicket()
 {
-    if(ticketsHaveBeenLoaded) {
+    if(tickets) {
         if((currentTicketCounter) >= totalNumberOfTickets) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-    else {
-        return false;
-    }
-}
-
-//TODO this isn't used?
-function isThereAPreviousTicket()
-{
-    if(ticketsHaveBeenLoaded) {
-        if((currentTicketCounter) <= 0) {
             return false;
         }
         else {
@@ -90,7 +57,6 @@ function loadOfflineTickets() {
     $.getJSON("OfflineTickets/", function(data){
         tickets = data;
         resetCurrentTicketCounter();
-        validateDataReturned(tickets);
         updateTicketView();
     });
 }
