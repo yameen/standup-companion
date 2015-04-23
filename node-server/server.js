@@ -1,10 +1,11 @@
 var express = require('express')
-    , app = express()
-    , fs = require('fs')
-    , path = require('path')
-    , pfxFilePath = path.resolve(__dirname, 'ssl/client.p12')
-    , pfxPasswordPath = path.resolve(__dirname, 'ssl/password')
-    , request = require('request');
+, app = express()
+, fs = require('fs')
+, path = require('path')
+, pfxFilePath = path.resolve(__dirname, 'ssl/client.p12')
+, pfxPasswordPath = path.resolve(__dirname, 'ssl/password')
+, request = require('request')
+, exec = require('child_process').exec;
 
 var config;
 fs.readFile('config.json', 'utf8', function (err, data) {
@@ -69,6 +70,81 @@ app.get('/OfflineEpics', function (req, res) {
         if (err) throw err;
         res.send(JSON.parse(data));
     });
+});
+
+app.get('/speakNextTicket', function (req, res) {
+    if(req.query.number) {
+        exec ('omxplayer audio/nextTicketBell.wav', function(error, stdout, stderr) {
+            if(error == null) {
+                console.log(stdout);
+                exec ('echo "Testing Ticket number '+ req.query.number+' being discussed now" | festival --tts', function(error, stdout, stderr) {
+                    if(error == null)
+                    {
+                        res.send("Spoke "+ req.query.number);
+                        console.log(stdout);
+                    }
+                    else {
+                        res.send("Error: "+ stderr);
+                        console.log(stderr);
+                    }
+                }); 
+            }
+            else {
+
+                res.send("Error: "+ stderr);
+                console.log(stderr);
+            }
+        });
+
+    }
+    else {
+        res.send("Error: no 'number' parameter");
+    }
+});
+
+app.get('/soundEndOfStandUp', function (req, res) {
+    exec ('omxplayer audio/thatsAllFolks.mp3', function(error, stdout, stderr) {
+        if(error == null) {
+            res.send("Sounded end of standup");
+            console.log(stdout);
+
+        }
+        else {
+            res.send("Error: "+ stderr);
+            console.log(stderr);
+        }
+    });
+
+});
+
+app.get('/sayTimerStarted', function (req, res) {
+    exec ('echo "Testing Countdown Timer has started, please proceed" | festival --tts', function(error, stdout, stderr) {
+        if(error == null) {
+            res.send("Spoke prompt");
+            console.log(stdout);
+
+        }
+        else {
+            res.send("Error: "+ stderr);
+            console.log(stderr);
+        }
+    });
+
+});
+
+app.get('/thirtySecondsLeft', function (req, res) {
+    exec ('echo "Testing Warn-ing, Thirty Seconds remaining for this ticket" | festival --tts', function(error, stdout, stderr) {
+        if(error == null) {
+            res.send("Spoke warning");
+            console.log(stdout);
+
+        }
+        else {
+            res.send("Error: "+ stderr);
+            console.log(stderr);
+        }
+    });
+
 });
 
 var server = app.listen(3000, function () {

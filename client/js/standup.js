@@ -1,5 +1,6 @@
 var tickets;
 var currentTicketCounter;
+var currentTicketJiraID;
 var totalNumberOfTickets = 0;
 
 function resetCurrentTicketCounter() {
@@ -16,6 +17,8 @@ function updateTicketView() {
     var standupProgress = (((currentTicketCounter)/tickets.issues.length)*100) + '%';
     $('#standupProgress').css('width', standupProgress);
     $('.header__standupInfo span').text('Ticket number '+ currentTicketCounter +' of '+ totalNumberOfTickets);
+    currentTicketJiraID = ticket.key;
+    console.log(currentTicketJiraID);
 }
 
 function setStatusIndicatorToPlay(playing){
@@ -73,4 +76,30 @@ function previousTicket() {
         currentTicketCounter--;
         updateTicketView();
     }
+}
+
+/*Voicing methods here*/
+
+function audioForPlayTimer() {
+    $.get('sayTimerStarted', function(data){
+        console.log(data);
+    });
+}
+
+function audioForNextTicket(ticketNumber) {
+    $.get('speakNextTicket?number='+ticketNumber || 'unknown', function(data){
+        console.log(data);
+    });
+}
+
+function audioForEndOfStandUp() {
+    $.get('soundEndOfStandUp', function(data){
+        console.log(data);
+    });
+}
+
+function audioForThirtySecWarning() {
+    $.get('thirtySecondsLeft', function(data){
+        console.log(data);
+    });
 }
