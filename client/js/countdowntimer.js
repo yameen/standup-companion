@@ -51,10 +51,12 @@
         if(isThereANextTicket()) {
             nextTicket();
             playWithCurrentTimePerTicket();
+            audioForNextTicket(currentTicketJiraID);
         }
         else {
             playingTimer = false;
             setStatusIndicatorToPlay(false);
+            audioForEndOfStandUp();
             console.log('finished playing all tickets!');
         }
     }
@@ -79,7 +81,9 @@
                     //({time: { Days: {show: false}, Hours: {show:false}, Minutes: {show:false}}, Seconds: {show:true}}).rebuild();
                     if (total == 30) {
                         countDown_timer.data('timer',30);
-                        countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } })
+                        countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#900' }, Seconds: { color: '#900' } } });
+                        audioForThirtySecWarning();
+
                     }
                     if (total<=0)
                     {
