@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <title>Standup companion</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1 class="text-center">Standup companion <small>start page</small></h1>
+    <div class="well center-block " style="max-width: 40%;">
+        <div class="btn-group btn-group-lg btn-block center-block" role="group" aria-label="LH standup">
+            <button type="button" class="btn btn-default btn-lg ">Run Lovely Horse Standup</button>
+            <button type="button" class="btn btn-default btn-lg "><span class="glyphicon glyphicon-bullhorn" ></span></button>
+        </div>
+        <div class="btn-group btn-group-lg btn-block" role="group" aria-label="HB standup">
+            <button type="button" class="btn btn-default btn-lg ">Run Honey Badger Standup</button>
+            <button type="button" class="btn btn-default btn-lg "><span class="glyphicon glyphicon-bullhorn" ></span></button>
+        </div>
+        <div class="btn-group btn-group-lg btn-block" role="group" aria-label="CPH standup">
+            <button type="button" class="btn btn-default btn-lg ">Run Continuose Product 'Health'</button>
+            <button type="button" class="btn btn-default btn-lg "><span class="glyphicon glyphicon-bullhorn" ></span></button>
+        </div>
+    </div>
+    <h2><div class="text-center" id="timeclock"></div></h2>
+    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript">
+
+    $( document ).ready(function() 
+    {
+        startTime();
+    });
+
+    function startTime() {
+        var today=new Date();
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        document.getElementById('timeclock').innerHTML = "Time: "+h+":"+m+":"+s;
+        var t = setTimeout(function(){startTime()},500);
+    }
+
+    function checkTime(i) {
+    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
+    return i;
+}</script>
+</body>
+</html>
