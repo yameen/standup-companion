@@ -1,6 +1,11 @@
     var timePerTicket;
+
     function createTimePerTicketSelector() {
-        $('.standupCompanion__timer').append('<input id="timerSelect" type="text" value="2" name="ticketTime">');
+        $('.header__timer').append($("<input>")
+            .attr("id", "timerSelect")
+            .attr("type", "text")
+            .attr("value", "2")
+            .attr("name", "ticketTime"));
         $("input[name='ticketTime']").TouchSpin({
             min: 1,
             max: 6,
@@ -9,21 +14,25 @@
             booster: false,
             postfix: 'Minutes'
         });
-    };
+    }
+
     function destroyAndClearInnerHtmlOfTimerCircles() {
-        var countDown_timer = $('.standupCompanion__timer',window.parent.document);
+        var countDown_timer = $('.header__timer',window.parent.document);
         countDown_timer.TimeCircles().destroy();
-        $('.standupCompanion__timer').empty();
-    };
+        $('.header__timer').empty();
+    }
+
     function removeTimerAndReDisplaySelector() {
         destroyAndClearInnerHtmlOfTimerCircles();
         createTimePerTicketSelector();
-    };
+    }
+
     function playWithCurrentTimePerTicket() {
         getTimeSetPerTicketInSeconds();
         destroyAndClearInnerHtmlOfTimerCircles();
         startTicketCountDownTimer(timePerTicket);
-    };
+    }
+
     function getTimeSetPerTicketInSeconds(){
         if($('#timerSelect').length){
             var inputValue = parseInt($('#timerSelect').val(), 10);
@@ -36,7 +45,8 @@
             timePerTicket = 45;
         }
         
-    };
+    }
+
     function tickOverToNextTicketOrEnd(){
         if(isThereANextTicket()) {
             nextTicket();
@@ -48,8 +58,9 @@
             console.log('finished playing all tickets!');
         }
     }
+
     function startTicketCountDownTimer(timeInSeconds) {
-        var countDown_timer = $('.standupCompanion__timer',window.parent.document);
+        var countDown_timer = $('.header__timer',window.parent.document);
         countDown_timer.data('timer',timeInSeconds || 120);
         countDown_timer.TimeCircles({ time: { Days: { show:false }, Hours: { show:false }, Minutes: { color: '#4D8DC1' }, Seconds: { color: '#4D8DC1' } } })
         .addListener(
@@ -80,4 +91,4 @@
             }
         );
         playingTimer = true;
-    };
+    }

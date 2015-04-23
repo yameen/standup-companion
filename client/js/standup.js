@@ -11,7 +11,7 @@ function updateTicketView() {
 
     var ticket = tickets.issues[currentTicketCounter-1];
     $('#summary').html(ticket.fields.summary);
-    $('#reporter').html(ticket.fields.reporter.name);
+    $('#reporter').html(ticket.fields.reporter.name.replace("@bbc.co.uk",""));
     $('#avatars').attr('src', ticket.fields.reporter.avatarUrls['48x48']);
     var standupProgress = (((currentTicketCounter)/tickets.issues.length)*100) + '%';
     $('#standupProgress').css('width', standupProgress);
@@ -40,7 +40,7 @@ function loadTickets(project, status, epic) {
 function isThereANextTicket()
 {
     if(tickets) {
-        if((currentTicketCounter) >= totalNumberOfTickets) {
+        if(currentTicketCounter >= totalNumberOfTickets) {
             return false;
         }
         else {

@@ -10,83 +10,64 @@
 </head>
 <body>
 
-    <div class="container-fluid standupCompanion">
-        <div class="row row--top">
-            <div class="col-xs-9 standupCompanion__header outerPanel">
-                <div class="row header--top">
-                    <div class="col-xs-7 header__epic">
-                        <h2 id="epic">Epic</h2>
-                    </div>
-                    <div id="timeclock" class="col-xs-5 header__timeInfo">
-                        Time
-                    </div>
-                </div>
-                <div class="row header--bottom">
-                    <div class="col-xs-2 header__inProgress">
-                        <h2><small>In Progress</small></h2>
-                    </div>
-                    <div class="col-xs-10 header__standupInfo">
-                        <div class="header__statusIndicator"></div>
-                        <span>Ticket number X out of Y</span>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xs-3 standupCompanion__timer outerPanel"></div>
+<div class="container-fluid standupCompanion">
+    <div class="row row--header">
+        <div class="col-xs-6 header__epic outerPanel">
+            <div id="timeclock" class="header__timeInfo"></div>
+            <h2 id="epic">[epic name]</h2>
         </div>
-        <div class="row row--bottom">
-            <div class="col-xs-9 standupCompanion__body">
-                <div class="row body--top">
-                    <div class="col-xs-2 ticketNav ticketNav--left">
-                        <span class="glyphicon glyphicon-chevron-left buttonIcon" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-xs-8 standupCompanion__currentTicket">
-                        <div class="currentTicket__info">
-                            <h1><div id="summary"></div></h1>
-                        </div>
-                        <div class="progress currentTicket__progress">
-                            <div class="progress-bar" role="progressbar" id="standupProgress">
-                                <span class="sr-only"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xs-2 ticketNav ticketNav--right">
-                        <span class="glyphicon glyphicon-chevron-right buttonIcon" aria-hidden="true"></span>
-                    </div>
-                </div>
-                <div class="row body--bottom">
-                    <div class="col-xs-3 standupControls standupControls--restart">
-                        <span class="glyphicon glyphicon-repeat buttonIcon" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-xs-3 standupControls standupControls--playPause">
-                        <span class="glyphicon glyphicon-play buttonIcon" aria-hidden="true"></span>
-                        <span class="glyphicon glyphicon-pause buttonIcon" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-xs-3 standupControls standupControls--stop">
-                        <span class="glyphicon glyphicon-stop buttonIcon" aria-hidden="true"></span>
-                    </div>
-                    <div class="col-xs-3 standupControls standupControls--mute">
-                        <span class="glyphicon glyphicon-volume-off buttonIcon" aria-hidden="true"></span>
-                    </div>
+        <div class="col-xs-3 header__statusIndicator outerPanel"></div>
+        <div class="col-xs-3 header__timer outerPanel"></div>
+    </div>
+    <div class="row row--body">
+        <div class="col-xs-1 body__ticketNav ticketNav--left">
+            <span class="glyphicon glyphicon-chevron-left buttonIcon" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-7 body__currentTicket">
+            <div class="currentTicket__info">
+                <h1><div id="summary"></div></h1>
+            </div>
+            <div class="progress currentTicket__progress">
+                <div class="progress-bar" role="progressbar" id="standupProgress">
+                    <span class="sr-only"></span>
                 </div>
             </div>
-            <div class="col-xs-3 standupCompanion__avatars outerPanel">
-                <button class="btn btn-primary" type="button" onclick="loadTickets('iplayertv', 'inprogress', 'cph')">Query Jira</button>
-                <button class="btn btn-danger" type="button" onclick="loadOfflineTickets()">Load Offline Tickets</button>
-                <br><br>
-                <img src="" id="avatars">&nbsp;<span id="reporter"></span>
-            </div>
+        </div>
+        <div class="col-xs-1 body__ticketNav ticketNav--right">
+            <span class="glyphicon glyphicon-chevron-right buttonIcon" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-3 body__people outerPanel">
+            <button class="btn btn-primary" type="button" onclick="loadTickets('iplayertv', 'inprogress', 'cph')">Query Jira</button>
+            <button class="btn btn-danger" type="button" onclick="loadOfflineTickets()">Load Offline Tickets</button>
+            <br><br>
+            <img src="" id="avatars">&nbsp;<span id="reporter"></span>
         </div>
     </div>
+    <div class="row row--footer">
+        <div class="col-xs-3 footer__standupControls standupControls--playPause">
+            <span class="glyphicon glyphicon-play buttonIcon" aria-hidden="true"></span>
+            <span class="glyphicon glyphicon-pause buttonIcon" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-3 footer__standupControls standupControls--stop">
+            <span class="glyphicon glyphicon-stop buttonIcon" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-3 footer__standupControls standupControls--mute">
+            <span class="glyphicon glyphicon-volume-off buttonIcon" aria-hidden="true"></span>
+        </div>
+        <div class="col-xs-3 footer__endStandup">
+            <span class="glyphicon glyphicon-home buttonIcon" aria-hidden="true"></span>
+        </div>
+    </div>
+</div>
 
-    <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
-    <script type="text/javascript" src="js/TimeCircles.js"></script>
-    <script type="text/javascript" src="js/jquery.bootstrap-touchspin.js"></script>
-    <script src="js/standup.js"></script>
-    <script type="text/javascript" src="js/countdowntimer.js"></script>
+<script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+<script type="text/javascript" src="js/TimeCircles.js"></script>
+<script type="text/javascript" src="js/jquery.bootstrap-touchspin.js"></script>
+<script src="js/standup.js"></script>
+<script type="text/javascript" src="js/countdowntimer.js"></script>
 
-    <script type="text/javascript">
-    $( document ).ready(function() 
-    {
+<script type="text/javascript">
+    $( document ).ready(function() {
         startTime();
         var playingTimer = false;
         createTimePerTicketSelector();
@@ -117,7 +98,6 @@
             updateTicketView();
             playWithCurrentTimePerTicket();
         });
-
         $(".ticketNav--left").click(function(){
             previousTicket();
             if(playingTimer)
@@ -130,23 +110,21 @@
         });
     });
 
-function startTime() {
-    var today=new Date();
-    var h=today.getHours();
-    var m=today.getMinutes();
-    var s=today.getSeconds();
-    m = checkTime(m);
-    s = checkTime(s);
-    document.getElementById('timeclock').innerHTML = "Time: "+h+":"+m+":"+s;
-    var t = setTimeout(function(){startTime()},500);
-}
+    function startTime() {
+        var today=new Date();
+        var h=today.getHours();
+        var m=today.getMinutes();
+        var s=today.getSeconds();
+        m = checkTime(m);
+        s = checkTime(s);
+        $('#timeclock').html("Time: "+h+":"+m+":"+s);
+        var t = setTimeout(function(){startTime()},500);
+    }
 
-function checkTime(i) {
-    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}
-
-
+    function checkTime(i) {
+        if (i<10) {i = "0" + i}  // add zero in front of numbers < 10
+        return i;
+    }
 </script>
 
 </body>

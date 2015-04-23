@@ -12,111 +12,104 @@ h2 {
 }
 
 .standupCompanion {
-    height: 624px;
+    height: 768px;
 }
 
-.row--top {
-    height: 20%;
+.row--header {
+    height: 15%;
 }
 
-.row--bottom {
-    height: 80%;
+.row--body {
+    height: 70%;
 }
 
-.body--top {
-    height: 80%;
+.row--footer {
+    height: 15%;
 }
 
-.body--bottom {
-    height: 20%;
-}
-
-.standupCompanion__header,
 .header__epic,
-.header__inProgress,
-.standupCompanion__avatars,
-.standupCompanion__body,
-.ticketNav,
-.standupCompanion__currentTicket,
-.standupControls{
+.header__statusIndicator,
+.header__timer,
+.body__ticketNav,
+.body__currentTicket,
+.body__people,
+.footer__standupControls,
+.footer__endStandup {
     height: 100%;
+}
+
+.currentTicket__info {
+    height: 80%;
 }
 
 .header__timeInfo {
     font-size: 24pt;
 }
 
-.header__standupInfo {
-    font-size: 18pt;
-}
-
 .header__statusIndicator{
     background-image: url("../img/standup_stopped.jpg");
     background-size: contain;
     background-repeat: no-repeat;
-    height: 63px;
-    width: 102px;
     display: inline-block;
 }
 .header__statusIndicator.playingTimer {
     background-image: url("../img/standup_running.gif");
-
 }
 
-.standupCompanion__timer{
-    height:100%;
-}
-
-.header--top,
-.header--bottom {
-    height: 50%;
-}
-
-.ticketNav, .standupControls {
+.body__ticketNav,
+.footer__standupControls,
+.footer__endStandup {
     text-align: center;
     font-size: xx-large;
+}
+
+.body__ticketNav,
+.footer__standupControls {
     background-color: rgba(189,141,70,0.8);
     border: 5px solid #B9121B;
 }
 
-.standupCompanion__currentTicket {
+.footer__endStandup {
+    background-color: rgba(185,18,25,0.8);
+    border: 5px solid rgba(189,141,70,0.8);
+}
+
+.body__currentTicket {
+    background-color: #FCFAE1;
     border-top: 5px solid rgba(246,228,151,0.5);
-}
-
-.ticketNav:active, .standupControls:active {
-    background-color: rgba(189,141,70,1);
-}
-
-.ticketNav .buttonIcon {
-     margin-top: 210%;
-}
-
-.standupControls .buttonIcon {
-    margin-top: 17%;
 }
 
 .outerPanel {
     background-color: #F6E497;
 }
 
-.standupCompanion__body {
-    background-color: #FCFAE1;
+.body__ticketNav:active,
+.footer__standupControls:active {
+    background-color: rgba(189,141,70,1);
+}
+
+.footer__endStandup:active {
+    background-color: rgba(185,18,25,1);
+}
+
+.body__ticketNav .buttonIcon {
+     margin-top: 550%;
+}
+
+.footer__standupControls .buttonIcon,
+.footer__endStandup .buttonIcon {
+    margin-top: 17%;
 }
 
 .buttonIcon {
     color: #4C1B1B;
 }
 
-.ticketNav {
+.body__ticketNav {
     border-bottom: none;
 }
 
-.standupControls--restart,
 .standupControls--playPause,
 .standupControls--stop {
     border-right: none;
-}
-
-.currentTicket__info {
-    height: 80%;
 }
