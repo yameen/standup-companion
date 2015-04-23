@@ -33,7 +33,6 @@ h2 {
 
 .standupCompanion__header,
 .header__epic,
-.header__timeInfo,
 .header__inProgress,
 .standupCompanion__avatars,
 .standupCompanion__body,
@@ -43,6 +42,9 @@ h2 {
     height: 100%;
 }
 
+.header__timeInfo {
+    font-size: 24pt;
+}
 
 .header__standupInfo {
     font-size: 18pt;
