@@ -23,29 +23,15 @@
             <button type="button" class="btn btn-default btn-lg "><span class="glyphicon glyphicon-bullhorn" ></span></button>
         </div>
     </div>
-    <h2><div class="text-center" id="timeclock"></div></h2>
+    <h2 class="text-center" id="timeclock"></h2>
     <script type="text/javascript" src="js/jquery-1.11.2.js"></script>
+    <script type="text/javascript" src="js/currentDateTime.js"></script>
+
     <script type="text/javascript">
-
-    $( document ).ready(function() 
-    {
-        startTime();
-    });
-
-    function startTime() {
-        var today=new Date();
-        var h=today.getHours();
-        var m=today.getMinutes();
-        var s=today.getSeconds();
-        m = checkTime(m);
-        s = checkTime(s);
-        document.getElementById('timeclock').innerHTML = "Time: "+h+":"+m+":"+s;
-        var t = setTimeout(function(){startTime()},500);
-    }
-
-    function checkTime(i) {
-    if (i<10) {i = "0" + i};  // add zero in front of numbers < 10
-    return i;
-}</script>
+        $( document ).ready(function()
+        {
+            startTime();
+        });
+    </script>
 </body>
 </html>
