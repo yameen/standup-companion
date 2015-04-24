@@ -1,18 +1,23 @@
 /*
     Colour Palette
-    Red:            #B9121B
-    Dark Red:       #4C1B1B
-    Light Brown:    #F6E497
-    Cream:          #FCFAE1
-    Dark Brown:     #BD8D46
+    Red:            #B9121B     185,18,27
+    Dark Red:       #4C1B1B     76,27,27
+    Light Brown:    #F6E497     246,228,151
+    Cream:          #FCFAE1     252,250,225
+    Dark Brown:     #BD8D46     189,141,70
 */
 
 h2 {
-    color: #4C1B1B;
+    color: rgb(76,27,27);
+}
+
+h3 {
+    color: rgba(76,27,27,0.8);
 }
 
 .standupCompanion {
     height: 768px;
+    width: 1024px;
 }
 
 .row--header {
@@ -40,10 +45,6 @@ h2 {
 
 .currentTicket__info {
     height: 80%;
-}
-
-.header__timeInfo {
-    font-size: 24pt;
 }
 
 .header__statusIndicator{
