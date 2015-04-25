@@ -1,10 +1,18 @@
-var tickets;
-var currentTicketCounter;
-var currentTicketJiraID;
-var totalNumberOfTickets = 0;
+var epicJSON,
+    tickets,
+    currentTicketCounter,
+    currentTicketJiraID,
+    totalNumberOfTickets = 0;
 
 function resetCurrentTicketCounter() {
     currentTicketCounter = 1;
+}
+
+function getEpicData() {
+    epicJSON = JSON.parse(localStorage.getItem('epicJson'));
+    localStorage.removeItem('epicJson');
+    $('#epic').text(epicJSON.epicLabel);
+    loadTickets('iplayertv', 'inprogress', '"'+epicJSON.key+'"')
 }
 
 function updateTicketView() {

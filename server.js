@@ -49,7 +49,7 @@ app.get('/LoadTickets', function (req, res) {
     var queryUrl = config.jiradomain + "/rest/api/2/search?jql=";
     queryUrl += "project=" + config.projects[project];
     queryUrl += " AND status=" + config.statuses[status];
-    queryUrl += " AND \"Epic Link\"=" + config.epics[epic].url;
+    queryUrl += " AND \"Epic Link\"=" + epic;
     queryUrl = encodeURI(queryUrl);
 
     console.log("URL: " + req.url);
@@ -152,20 +152,16 @@ app.get('/thirtySecondsLeft', function (req, res) {
 
 //------------------ ROUTE FOR INDEX AND PARTIALS ------------------//
 
-app.get('/', function(req, res) {
-    res.render('title.html');
-});
+//app.get('/', function(req, res) {
+//    res.render('title.html');
+//});
 
-app.get('/epics', function(req, res) {
+app.get('/', function(req, res) {
     res.render('epics.html');
 });
 
 app.get('/standup', function(req, res) {
     res.render('standup.html');
-});
-
-app.post('/standup', function(req, res) {
-    res.render('standup.html', req.body.epicJson);
 });
 
 //------------------ START SERVER ------------------//

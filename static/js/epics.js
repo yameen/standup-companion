@@ -8,10 +8,8 @@ function listEpics(json) {
                         .text(value.epicLabel)
                         .data('epicJson', value)
                         .click(function(){
-                            $.post('/standup', JSON.stringify($(this).data('epicJson')))
-                                .done(function(data){
-                                    console.log(data);
-                                });
+                            localStorage.setItem('epicJson', JSON.stringify($(this).data('epicJson')));
+                            window.location.href = '/standup';
                         })
                 )
             );
