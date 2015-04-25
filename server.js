@@ -80,7 +80,7 @@ app.get('/OfflineEpics', function (req, res) {
 
 app.get('/speakNextTicket', function (req, res) {
     if(req.query.number) {
-        exec ('omxplayer audio/nextTicketBell.wav', function(error, stdout, stderr) {
+        exec ('omxplayer static/audio/nextTicketBell.wav', function(error, stdout, stderr) {
             if(error == null) {
                 console.log(stdout);
                 exec ('echo "Testing Ticket number '+ req.query.number+' being discussed now" | festival --tts', function(error, stdout, stderr) {
@@ -109,7 +109,7 @@ app.get('/speakNextTicket', function (req, res) {
 });
 
 app.get('/soundEndOfStandUp', function (req, res) {
-    exec ('omxplayer audio/thatsAllFolks.mp3', function(error, stdout, stderr) {
+    exec ('omxplayer static/audio/thatsAllFolks.mp3', function(error, stdout, stderr) {
         if(error == null) {
             res.send("Sounded end of standup");
             console.log(stdout);
