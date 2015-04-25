@@ -16,7 +16,7 @@ function updateTicketView() {
     $('#avatars').attr('src', ticket.fields.reporter.avatarUrls['48x48']);
     var standupProgress = (((currentTicketCounter)/tickets.issues.length)*100) + '%';
     $('#standupProgress').css('width', standupProgress);
-    $('.header__standupInfo span').text('Ticket number '+ currentTicketCounter +' of '+ totalNumberOfTickets);
+    $('#header__standupInfo').text('Ticket '+ currentTicketCounter +' of '+ totalNumberOfTickets);
     currentTicketJiraID = ticket.key;
     console.log(currentTicketJiraID);
 }
