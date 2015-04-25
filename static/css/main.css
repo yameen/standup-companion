@@ -114,3 +114,18 @@ h3 {
 .standupControls--stop {
     border-right: none;
 }
+
+.bootstrap-touchspin {
+    margin-top: 10%;
+}
+
+.bootstrap-touchspin-down,
+.bootstrap-touchspin-up {
+    font-size: xx-large;
+    width: 50px;
+}
+
+#timerSelect {
+    font-size: xx-large;
+    height: 100%;
+}
