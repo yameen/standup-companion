@@ -48,7 +48,7 @@ h3 {
 }
 
 .header__statusIndicator{
-    background-image: url("../images/standup_stopped.jpg");
+    background-image: url("../images/standup_stopped.png");
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
