@@ -1,11 +1,13 @@
-var express = require('express')
-, app = express()
-, fs = require('fs')
-, path = require('path')
-, pfxFilePath = path.resolve(__dirname, 'ssl/client.p12')
-, pfxPasswordPath = path.resolve(__dirname, 'ssl/password')
-, request = require('request')
-, exec = require('child_process').exec;
+var express = require('express'),
+    app = express(),
+    fs = require('fs'),
+    path = require('path'),
+    pfxFilePath = path.resolve(__dirname, 'ssl/client.p12'),
+    pfxPasswordPath = path.resolve(__dirname, 'ssl/password'),
+    request = require('request'),
+    bodyParser = require('body-parser'),
+    mustacheExpress = require('mustache-express'),
+    exec = require('child_process').exec;
 
 var config;
 fs.readFile('config.json', 'utf8', function (err, data) {
@@ -13,7 +15,9 @@ fs.readFile('config.json', 'utf8', function (err, data) {
     config = JSON.parse(data)
 });
 
-app.use(express.static('../client'));
+app.use(express.static('static'));
+app.use(bodyParser.json());
+app.engine('html', mustacheExpress());
 
 function urlWithSSLOptions(url) {
     var options = {};
@@ -25,6 +29,8 @@ function urlWithSSLOptions(url) {
     };
     return options;
 }
+
+//------------------ API ------------------//
 
 app.get('/ListEpics', function (req, res) {
     var queryUrl = config.jiradomain + "/rest/greenhopper/1.0/xboard/plan/backlog/epics?rapidViewId=" + config.rapidViewId;
@@ -87,7 +93,7 @@ app.get('/speakNextTicket', function (req, res) {
                         res.send("Error: "+ stderr);
                         console.log(stderr);
                     }
-                }); 
+                });
             }
             else {
 
@@ -114,7 +120,6 @@ app.get('/soundEndOfStandUp', function (req, res) {
             console.log(stderr);
         }
     });
-
 });
 
 app.get('/sayTimerStarted', function (req, res) {
@@ -129,7 +134,6 @@ app.get('/sayTimerStarted', function (req, res) {
             console.log(stderr);
         }
     });
-
 });
 
 app.get('/thirtySecondsLeft', function (req, res) {
@@ -144,8 +148,27 @@ app.get('/thirtySecondsLeft', function (req, res) {
             console.log(stderr);
         }
     });
-
 });
+
+//------------------ ROUTE FOR INDEX AND PARTIALS ------------------//
+
+app.get('/', function(req, res) {
+    res.render('title.html');
+});
+
+app.get('/epics', function(req, res) {
+    res.render('epics.html');
+});
+
+app.get('/standup', function(req, res) {
+    res.render('standup.html');
+});
+
+app.post('/standup', function(req, res) {
+    res.render('standup.html', req.body.epicJson);
+});
+
+//------------------ START SERVER ------------------//
 
 var server = app.listen(3000, function () {
     var host = server.address().address;

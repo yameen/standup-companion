@@ -5,6 +5,8 @@
   "private": true,
   "dependencies": {
     "express": "4.x",
-    "request": "2.x"
+    "request": "2.x",
+    "body-parser": "1.x",
+    "mustache-express": "1.x"
   }
 }

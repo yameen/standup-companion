@@ -2,13 +2,17 @@
 function listEpics(json) {
     $.each(json.epics, function(index, value){
         if(!value.hidden){
-            $("#epicList").children('tbody')
-                .append($('<tr>')
+            $("#epicList").children('tbody').append($('<tr>')
                     .append($('<td>')
                         .addClass('btn btn-default btn-block')
                         .text(value.epicLabel)
                         .data('epicJson', value)
-                        .click(function(){console.log($(this).data('epicJson'))})
+                        .click(function(){
+                            $.post('/standup', JSON.stringify($(this).data('epicJson')))
+                                .done(function(data){
+                                    console.log(data);
+                                });
+                        })
                 )
             );
         }

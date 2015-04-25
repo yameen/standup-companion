@@ -48,13 +48,13 @@ h3 {
 }
 
 .header__statusIndicator{
-    background-image: url("../img/standup_stopped.jpg");
+    background-image: url("../images/standup_stopped.jpg");
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
 }
 .header__statusIndicator.playingTimer {
-    background-image: url("../img/standup_running.gif");
+    background-image: url("../images/standup_running.gif");
 }
 
 .body__ticketNav,
