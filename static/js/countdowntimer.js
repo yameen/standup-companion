@@ -57,6 +57,7 @@
             playingTimer = false;
             setStatusIndicatorToPlay(false);
             audioForEndOfStandUp();
+            $('#standupProgress').removeClass('active progress-bar-striped');
             console.log('finished playing all tickets!');
         }
     }
