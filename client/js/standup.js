@@ -81,25 +81,37 @@ function previousTicket() {
 /*Voicing methods here*/
 
 function audioForPlayTimer() {
-    $.get('sayTimerStarted', function(data){
-        console.log(data);
-    });
+    if(shouldIPlayAudio()){
+        $.get('sayTimerStarted', function(data){
+            console.log(data);
+        });
+    }
 }
 
 function audioForNextTicket(ticketNumber) {
-    $.get('speakNextTicket?number='+ticketNumber || 'unknown', function(data){
-        console.log(data);
-    });
+    if(shouldIPlayAudio()){
+        $.get('speakNextTicket?number='+ticketNumber || 'unknown', function(data){
+            console.log(data);
+        });
+    }
 }
 
 function audioForEndOfStandUp() {
-    $.get('soundEndOfStandUp', function(data){
-        console.log(data);
-    });
+    if(shouldIPlayAudio()){
+        $.get('soundEndOfStandUp', function(data){
+            console.log(data);
+        });
+    }
 }
 
 function audioForThirtySecWarning() {
-    $.get('thirtySecondsLeft', function(data){
-        console.log(data);
-    });
+    if(shouldIPlayAudio()){
+        $.get('thirtySecondsLeft', function(data){
+            console.log(data);
+        });
+    }
+}
+
+function shouldIPlayAudio() {
+    return !$(".standupControls--mute .glyphicon").hasClass("glyphicon-volume-up");
 }
